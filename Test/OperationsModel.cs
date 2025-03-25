@@ -11,38 +11,68 @@ namespace Test
         double Call(params double[] args);
     }
 
-    class AddOperation : IOperation
+    delegate double OperationDelegate(params double[] args);
+
+    class Operation : IOperation
     {
-        public double Call(params double[] args) => args[0] + args[1];
+        private readonly OperationDelegate _operation;
+
+        public Operation(OperationDelegate operation)
+        {
+            _operation = operation;
+        }
+
+        public double Call(params double[] args)
+        {
+            try
+            {
+                return _operation(args);
+            }
+            catch (DivideByZeroException)
+            {
+                Console.WriteLine("Ошибка: деление на ноль");
+                return double.NaN;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Ошибка выполнения операции: {ex.Message}");
+                return double.NaN;
+            }
+        }
     }
 
-    class SubtractOperation : IOperation
-    {
-        public double Call(params double[] args) => args[0] - args[1];
-    }
+    //class AddOperation : IOperation
+    //{
+    //    public double Call(params double[] args ) => args[0] + args[1];
+    //}
 
-    public class MultiplyOperation : IOperation
-    {
-        public double Call(params double[] args) => args[0] * args[1];
-    }
+    //class SubtractOperation : IOperation
+    //{
+    //    public double Call(params double[] args) => args[0] - args[1];
+    //}
 
-    public class DivideOperation : IOperation
-    {
-        public double Call(params double[] args) => args[0] / args[1];
-    }
+    //public class MultiplyOperation : IOperation
+    //{
+    //    public double Call(params double[] args) => args[0] * args[1];
+    //}
 
-    public class SinOperation : IOperation
-    {
-        public double Call(params double[] args) => Math.Sin(args[0]);
-    }
+    //public class DivideOperation : IOperation
+    //{
+    //    public double Call(params double[] args) => args[0] / args[1];
+    //}
 
-    public class CosOperation : IOperation
-    {
-        public double Call(params double[] args) => Math.Cos(args[0]);
-    }
+    //public class SinOperation : IOperation
+    //{
+    //    public double Call(params double[] args) => Math.Sin(args[0]);
+    //}
 
-    public class PowOperation : IOperation
-    {
-        public double Call(params double[] args) => Math.Pow(args[0], args[1]);
-    }
+    //public class CosOperation : IOperation
+    //{
+    //    public double Call(params double[] args) => Math.Cos(args[0]);
+    //}
+
+    //public class PowOperation : IOperation
+    //{
+    //    public double Call(params double[] args) => Math.Pow(args[0], args[1]);
+    //}
 }

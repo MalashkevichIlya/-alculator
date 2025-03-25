@@ -5,11 +5,21 @@ OperationsViewModel vm = new OperationsViewModel();
 
 while (true)
 {
-    Console.WriteLine("Выберите операцию:");
+    Console.WriteLine("Выберите операцию (+, -, *, /, sin, cos, pow):");
     string operation = Console.ReadLine();
 
     Console.WriteLine("Введите числа через пробел:");
-    vm.Numbers = Console.ReadLine().Split(' ').Select(double.Parse).ToList();
+
+    try
+    {
+        vm.Numbers = Console.ReadLine().Split(' ').Select(double.Parse).ToList();
+    }
+    catch(FormatException)
+    {
+        Console.WriteLine("Ошибка ввода");
+        continue;
+    }
+    
 
     vm.ExecuteOperation(operation.ToLower());
 
