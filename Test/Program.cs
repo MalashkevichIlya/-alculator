@@ -19,11 +19,12 @@ while (true)
         Console.WriteLine("Ошибка ввода");
         continue;
     }
-    
 
-    vm.ExecuteOperation(operation.ToLower());
 
-    Console.WriteLine($"Результат: {vm.Result}");
+    //vm.ExecuteOperation(operation.ToLower());
+    //Console.WriteLine($"Результат: {vm.Result}");
+
+    Console.WriteLine($"Результат: {vm.ExecuteOperation(operation.ToLower())}");
     Console.WriteLine("Нажмите Enter для продолжения или введите 'exit' для выхода.");
     if (Console.ReadLine()?.ToLower() == "exit") break;
 }

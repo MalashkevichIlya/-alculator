@@ -48,16 +48,21 @@ namespace Test
             private set { result = value; OnPropertyChanged(); }
         }
 
-        public void ExecuteOperation(string operation)
+        //public void ExecuteOperation(string operation)
+        //{
+        //    if (operations.ContainsKey(operation))
+        //    {
+        //        Result = operations[operation].Call(Numbers.ToArray());
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Неверная операция");
+        //    }
+        //}
+
+        public double ExecuteOperation(string operation)
         {
-            if (operations.ContainsKey(operation))
-            {
-                Result = operations[operation].Call(Numbers.ToArray());
-            }
-            else
-            {
-                Console.WriteLine("Неверная операция");
-            }
+            return operations[operation].Call(Numbers.ToArray());
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
