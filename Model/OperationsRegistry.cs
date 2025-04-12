@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Model
+﻿namespace Model
 {
     public static class OperationsRegistry
     {
@@ -25,7 +19,7 @@ namespace Model
             {
                 return op.Call(numbers);
             }
-            throw new InvalidOperationException("Операция не найдена");
+            throw new OperationTypeException("Операции не существует!");
         }
     }
 }
