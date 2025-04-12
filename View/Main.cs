@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.DependencyInjection;
 using ViewModel;
 
 namespace View
@@ -11,8 +7,13 @@ namespace View
     {
         static void Main()
         {
-            IOperationsViewModel viewModel = new OperationsViewModel();
-            ConsoleView view = new(viewModel);
+            var services = new ServiceCollection()
+                .AddTransient<IOperationsViewModel, OperationsViewModel>()
+                .AddTransient<IView, ConsoleView>();
+
+            using var serviceProvider = services.BuildServiceProvider();
+
+            var view = serviceProvider.GetService<IView>();
             view.Run();
         }
     }

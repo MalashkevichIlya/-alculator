@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Model
+﻿namespace Model
 {
     public delegate double OperationDelegate(params double[] args);
 
@@ -27,7 +19,7 @@ namespace Model
             return _operation(args);
         }
 
-        protected void ValidateArguments(double[] args)
+        protected virtual void ValidateArguments(double[] args)
         {
             if (args.Length < _minArgs)
             {
