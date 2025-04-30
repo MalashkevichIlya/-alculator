@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using Model;
 
 namespace ViewModel
 {
     public class OperationsViewModel : IOperationsViewModel
     {
-        public string Input { get; set; } = "";
+        public string Input { get; set; } = string.Empty;
 
         public string ExecuteOperation(string operation)
         {
